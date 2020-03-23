@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>LogbackTelegramAdapter</artifactId>
+  <build>
+    <finalName>${finalName}</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <configuration>
+          <createDependencyReducedPom>false</createDependencyReducedPom>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <phase>package</phase>
+          </execution>
+        </executions>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>3.2.1</version>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <artifactId>okhttp</artifactId>
+      <groupId>com.squareup.okhttp3</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>logback-core</artifactId>
+      <groupId>ch.qos.logback</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>logback-classic</artifactId>
+      <groupId>ch.qos.logback</groupId>
+    </dependency>
+  </dependencies>
+  <groupId>win.mayan</groupId>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <relativePath/>
+    <version>2.2.1.RELEASE</version> <!-- lookup parent from repository -->
+  </parent>
+  <properties>
+    <finalName>${project.artifactId}</finalName>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <version>${env.RELEASE_VERSION}</version>
+</project>
