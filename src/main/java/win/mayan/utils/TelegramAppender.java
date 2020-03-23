@@ -12,14 +12,14 @@ public class TelegramAppender extends AppenderBase<LoggingEvent> {
   private String telegramChatId;
   private OkHttpClient httpClient;
   private String telegramToken;
-  private String title;
+  private String systemName;
 
-  public String getTitle() {
-    return title;
+  public String getSystemName() {
+    return systemName;
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public void setSystemName(String systemName) {
+    this.systemName = systemName;
   }
 
   public String getTelegramChatId() {
@@ -43,11 +43,11 @@ public class TelegramAppender extends AppenderBase<LoggingEvent> {
     if (e.getLevel() != Level.ERROR) {
       return;
     }
-    String msg = String.format("%s%0A%s: %s", title, e.getLoggerName(), e.getMessage());
     try {
       httpClient.newCall(new Request.Builder().url(String
           .format("https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s", telegramToken,
-              telegramChatId, msg)).get().build()).execute();
+              telegramChatId, systemName + "%0A" + e.getLoggerName() + ": " + e.getMessage())).get()
+          .build()).execute();
     } catch (IOException ex) {
       //do nothing here
     }
