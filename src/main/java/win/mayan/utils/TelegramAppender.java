@@ -1,5 +1,6 @@
 package win.mayan.utils;
 
+import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import java.io.IOException;
@@ -39,12 +40,14 @@ public class TelegramAppender extends AppenderBase<LoggingEvent> {
 
   @Override
   protected void append(LoggingEvent e) {
+    if (e.getLevel() != Level.ERROR) {
+      return;
+    }
+    String msg = String.format("%s%0A%s: %s", title, e.getLoggerName(), e.getMessage());
     try {
       httpClient.newCall(new Request.Builder().url(String
           .format("https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s", telegramToken,
-              telegramChatId, e.getMessage(),
-              title + "%0A" + e.getFormattedMessage().replaceAll("[\\r\\n]+", "%0A"))).get()
-          .build()).execute();
+              telegramChatId, msg)).get().build()).execute();
     } catch (IOException ex) {
       //do nothing here
     }
