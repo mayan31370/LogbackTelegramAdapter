@@ -46,7 +46,7 @@ public class TelegramAppender extends AppenderBase<LoggingEvent> {
     try {
       httpClient.newCall(new Request.Builder().url(String
           .format("https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s", telegramToken,
-              telegramChatId, systemName + "%0A" + e.getLoggerName() + ": " + e.getMessage())).get()
+              telegramChatId, systemName + "%0A" + e.getLoggerName() + ": " + e.getFormattedMessage())).get()
           .build()).execute();
     } catch (IOException ex) {
       //do nothing here
