@@ -8,7 +8,7 @@
 <dependency>
   <groupId>com.github.mayan31370</groupId>
   <artifactId>LogbackTelegramAdapter</artifactId>
-  <version>v0.9.1</version>
+  <version>v0.9.4</version>
 </dependency>
 ```
 ### 增加仓库
