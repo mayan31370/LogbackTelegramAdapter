@@ -5,24 +5,6 @@
   <artifactId>LogbackTelegramAdapter</artifactId>
   <build>
     <finalName>${finalName}</finalName>
-    <plugins>
-      <plugin>
-        <artifactId>maven-shade-plugin</artifactId>
-        <configuration>
-          <createDependencyReducedPom>false</createDependencyReducedPom>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-            <phase>package</phase>
-          </execution>
-        </executions>
-        <groupId>org.apache.maven.plugins</groupId>
-        <version>3.2.1</version>
-      </plugin>
-    </plugins>
   </build>
   <dependencies>
     <dependency>
